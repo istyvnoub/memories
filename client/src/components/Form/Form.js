@@ -20,7 +20,6 @@ dispatch(createPosts(postData))
 
     }
     const clear =()=>{
-
     }
     return (
         

@@ -5,16 +5,17 @@ import Form from "./components/Form/Form";
 import memories from "./images/memories.png";
 import useStyles from "./styles";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { getPosts } from "./actions/posts";
 
 const App =()=>{
     const classes = useStyles();
+    const [currentId, setcurrentid]=useState(null);
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(getPosts);
-    },[dispatch])
+        dispatch(getPosts());
+    },[currentId,dispatch])
 
     return (<Container maxwidth="lg">
         <AppBar  className={classes.appBar} position="static" color="inherit">
@@ -24,11 +25,11 @@ const App =()=>{
         <Grow in>
             <Container>
                 <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-                    <Grid item xs={12} sm ={7}>
-                     <Posts/>
+                    <Grid item xs={12} sm ={7} >
+                     <Posts setCurrentId={setcurrentid}/>
                     </Grid>
                     <Grid item xs={12} sm={4}>
-                       <Form/> 
+                       <Form currentId={currentId} setCurrentId={setcurrentid}/> 
                     </Grid>
                 </Grid>
             </Container>
